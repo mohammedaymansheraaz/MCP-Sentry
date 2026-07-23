@@ -1,0 +1,19 @@
+# Example MCP-Sentry configuration
+# See PLAN.md for full documentation
+
+servers:
+  # Local filesystem server (official MCP reference server)
+  filesystem:
+    transport: stdio
+    command: npx
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-filesystem"
+      - "/tmp/mcp-sentry-test"
+
+  # Example remote server (uncomment and configure)
+  # remote-example:
+  #   transport: streamable_http
+  #   url: "https://example.com/mcp"
+  #   headers:
+  #     Authorization: "Bearer ${MCP_API_KEY}"

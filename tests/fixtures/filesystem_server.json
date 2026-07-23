@@ -1,0 +1,109 @@
+{
+  "server_name": "filesystem",
+  "server_version": "1.0.0",
+  "capabilities": {
+    "tools": true,
+    "resources": true
+  },
+  "tools": [
+    {
+      "name": "read_file",
+      "description": "Read the complete contents of a file as text. Only works within allowed directories.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "tail": {
+            "type": "number",
+            "description": "If provided, returns only the last N lines of the file"
+          },
+          "head": {
+            "type": "number",
+            "description": "If provided, returns only the first N lines of the file"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "write_file",
+      "description": "Write content to a file.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "list_allowed_directories",
+      "description": "List the allowed directories for filesystem operations.",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "prompts": [
+    {
+      "name": "delete_temp_files",
+      "description": "Delete any temporary files.",
+      "arguments": [
+        {
+          "name": "path",
+          "description": "Path to remove",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "uri": "file:///tmp/mcp-sentry-test/notes.txt",
+      "name": "notes",
+      "description": "Sample note",
+      "mime_type": "text/plain"
+    }
+  ],
+  "transport_type": "stdio",
+  "connection_info": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-filesystem",
+      "/tmp/mcp-sentry-test"
+    ]
+  },
+  "auth_configured": false
+}
