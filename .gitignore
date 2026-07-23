@@ -2,3 +2,5 @@
 /TODO.md
 /reports
 /mcp_sentry.egg-info
+__pycache__/
+*.pyc
