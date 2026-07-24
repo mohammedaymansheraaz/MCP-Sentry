@@ -70,6 +70,12 @@ mcp-sentry scan --config configs/example.yaml --target filesystem --format markd
 mcp-sentry scan --config configs/example.yaml --target filesystem --format json --output reports/filesystem_report.json
 ```
 
+## Demo
+
+Watch MCP-Sentry in action:
+
+[![Demo Video](https://img.youtube.com/vi/YWgcnEZrF_8/0.jpg)](https://youtu.be/YWgcnEZrF_8)
+
 ## Setup Details
 
 The example config uses a local filesystem server launched through `npx`:
